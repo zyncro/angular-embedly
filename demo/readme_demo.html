@@ -1,0 +1,41 @@
+<html>
+
+<head>
+	<script src="../libs/angular.js"></script>
+	<script src="../src/angular.embedly.js"></script>
+	<script>
+		var mod = angular.module('ngEmbedlyTestApp', ['ngEmbedApp']);
+		mod.controller('ctrl', function($scope) {
+			$scope.key = 'Your Embed.ly Key Here';
+			$scope.query = {maxwidth:200};
+		});
+	</script>
+</head>
+
+<body ng-app="ngEmbedlyTestApp">
+	<h1>Embedly Angular Basic Example</h1>
+	<div ng-controller="ctrl">
+		Links here won't be embedded: <br>
+		<a href="https://vimeo.com/channels/staffpicks/96458672">vimeo</a>
+		<br>
+		<a href="https://www.youtube.com/watch?v=DHlzIgSvnYc">youtube</a>
+		<br>
+		<br>
+		Links here will be embedded with default options: <br>
+		<div ng-embedly key="key">
+			<a href="http://www.slideshare.net/dandiebolt/lernantatron">slideshare</a>
+			<br>
+			<a href="https://flic.kr/p/7FkS5d">flickr</a>
+			<br>
+			<br>
+		</div>
+		Links here will be embedded with custom query options: <br>
+		<div ng-embedly key="key" query="query" method="method">
+			<a href="https://flic.kr/p/nbCJp9">flickr</a>
+			<br>
+			<a href="https://flic.kr/p/7FkS5d">flickr</a>
+			<br>
+		</div>
+	</body>
+
+</html>

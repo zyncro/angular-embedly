@@ -1,0 +1,61 @@
+body
+{
+	background-repeat: no-repeat;
+	background: -moz-linear-gradient(LightGray, white); /* For Firefox 3.6 to 15 */
+	background: -o-linear-gradient(LightGray, white); /* For Opera 11.1 to 12.0 */
+	background: -webkit-linear-gradient(LightGray, white); /* For Safari 5.1 to 6.0 */
+	background: linear-gradient(LightGray, white); /* Standard syntax (must be last) */
+	height: 100%;
+  margin: 20px;
+}
+
+h1
+{
+	font-family: 'Roboto Slab', serif;
+	margin-top: 10px;
+	text-align: center;
+}
+
+p
+{
+	font-family: 'Crimson Text', serif;
+	margin: 0;
+}
+
+a
+{
+	color: blue;
+}
+
+#date
+{
+	text-align: right;
+}
+
+.ctrl
+{
+	padding-bottom: 150px;
+}
+
+.footer
+{
+	background-color: #fff;
+	bottom: 0;
+	font-size: 12px;
+	opacity: 0.8;
+	padding: 10px;
+	position: fixed;
+	right: 0;
+	text-align: right;
+	width: 100%;
+}
+
+.footer p
+{
+	margin: 0;
+}
+
+.footer .author 
+{
+	padding-bottom: 10px;
+}

@@ -1,55 +1,54 @@
 body
 {
-	background-color: #E1ECFF;
-	height: 100%;
-	font-family: 'Alegreya', serif;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 0 10px;
+  background-color: #E1ECFF;
+  height: 100%;
+  font-family: 'Alegreya', serif;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 10px;
 }
 
 h1
 {
-	font-family: 'Roboto Slab', serif;
-	font-weight: 400; 
-	margin: 0;
-	padding-bottom: 10px;
-	padding-top: 5px;
-	text-align: center;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 400; 
+  margin: 0;
+  padding-bottom: 10px;
+  padding-top: 5px;
+  text-align: center;
 }
 
 .enterText
 {
-	text-align: center;
+  text-align: center;
 }
 
 p
 {
-	margin: 0;
+  margin: 0;
 }
 
 a
 {
-	color: blue;
+  color: blue;
 }
-
 
 .embedlyContent
 {
-	padding-bottom: 150px;
+  padding-bottom: 150px;
 }
 
 .container
 {
-	margin: 0 auto;
-	padding: 10px;
-	padding-bottom: 0;
-	width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  padding-bottom: 0;
+  width: 80%;
 }
 
 textarea
 {
-	width: 100%;
+  width: 100%;
 }
 
 .embed
@@ -115,28 +114,28 @@ textarea
 
 .regularEmbeds
 {
-	text-align: center;
+  text-align: center;
 }
 
 .footer
 {
-	background-color: #fff;
-	bottom: 0;
-	font-size: 12px;
-	opacity: 0.8;
-	padding: 10px;
-	position: fixed;
-	right: 0;
-	text-align: right;
-	width: 100%;
+  background-color: #fff;
+  bottom: 0;
+  font-size: 12px;
+  opacity: 0.8;
+  padding: 10px;
+  position: fixed;
+  right: 0;
+  text-align: right;
+  width: 100%;
 }
 
 .footer p
 {
-	margin: 0;
+  margin: 0;
 }
 
 .footer .author 
 {
-	padding-bottom: 10px;
+  padding-bottom: 10px;
 }

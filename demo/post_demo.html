@@ -1,159 +1,155 @@
 <html>
 
-	<head>
-		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.js"></script>
-		<script src="../src/angular.embedly.js"></script>
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.js"></script>
+    <script src="../src/angular.embedly.js"></script>
 
-		<link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" type="text/css" href="post_style.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="post_style.css">
 
-		<meta name="viewport" content="width=device-width">
-		<meta name="apple-mobile-web-app-title" content="Lithium">
-	  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width">
+    <meta name="apple-mobile-web-app-title" content="Lithium">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-		<script>
+    <script>
 
-		angular.module('ngEmbedlyTestApp', [
-			'ngEmbedApp'
-			])
+    angular.module('ngEmbedlyTestApp', [
+      'ngEmbedApp'
+    ])
 
-		.directive ('myEmbedlyTest', function () {
+    .directive ('myEmbedlyTest', function () {
 
-			return {
-				controller: function ($scope, $rootScope) {
+      return {
+        controller: function ($scope, $rootScope) {
+          $scope.msgBody = '';
+          $scope.urls = [];
+          $scope.key = 'Your Embed.ly Key Here';
+          $scope.query = {maxwidth:300};
 
-					$scope.msgBody = '';
-					$scope.urls = [];
-					$scope.key = 'Your Embed.ly Key Here';
-					$scope.query = {maxwidth:300};
+  		  // Custom display function for thumbnail media snippets
+          $scope.display = function() {
+            if (this.type === 'error') {
+          	  return false;
+            }
 
-					// Custom display function for thumbnail media snippets
-					$scope.display = function() {
+          var title = this.title || this.url;
+          if (!UTILS.none(this.description)) {
+            var shortDescription = this.description.substring(0, 300);
+            if (this.description.length > 300) {
+              shortDescription += '...';
+            }
+          }
+          var html = '<div class="box" id="';
+          html += this.url;
+          html += '">';
 
-				    if (this.type === 'error') {
-				    	return false;
-				    }
+          // Thumnbnail image
+          if (!UTILS.none(this.thumbnail_url)) {
+            html += '<div class="embed-thumb"><a href="' + this.original_url + '" target="_blank">';
+            html += '<img src="'+ this.thumbnail_url + '" class="thumb-image"/> </a> </div>';
+            } else {
+              html += '<div class="embed-thumb"><div class="thumb-blank"></div></div>';
+            }
 
-				    var title = this.title || this.url;
-				    if (!UTILS.none(this.description)) {
-				    	var shortDescription = this.description.substring(0, 300);
-				    	if (this.description.length > 300) {
-				    	  shortDescription += '...';
-				    	}
-					 	}
-				    var html = '<div class="box" id="';
-				    html += this.url;
-				    html += '">';
+            html += '<div class="text">';
 
-				    // Thumnbnail image
-						if (!UTILS.none(this.thumbnail_url)) {
-						  html += '<div class="embed-thumb"><a href="' + this.original_url + '" target="_blank">';
-						  html += '<img src="'+ this.thumbnail_url + '" class="thumb-image"/> </a> </div>';
-						} else {
-						  html += '<div class="embed-thumb"><div class="thumb-blank"></div></div>';
-						}
+            // Title of media snippet
+            html += '<div class="titleText">' + title + '</div>';
 
-						html += '<div class="text">';
+            // URL link
+            html += '<div class="urlText"><a href="' + this.original_url + '" target="_blank">' + this.original_url + '</a></div>';
 
-						// Title of media snippet
-						html += '<div class="titleText">' + title + '</div>';
+            // Description of media snippet, if available
+            if (!UTILS.none(shortDescription)) {
+              html += '<div class="descriptionText" maxlength="100">' + shortDescription + '</div>';
+            }
 
-						// URL link
-						html += '<div class="urlText"><a href="' + this.original_url + '" target="_blank">' + this.original_url + '</a></div>';
+            // Provider information
+            html += '<em>Provider: ';
+            html += this.provider_name ? '<a href="' + this.provider_url + '" class="provider" target="_blank">' + this.provider_name.toLowerCase() + '</a> ' : "" + '</em> </span> </div> ';
 
-						// Description of media snippet, if available
-						if (!UTILS.none(shortDescription)) {
-						  html += '<div class="descriptionText" maxlength="100">' + shortDescription + '</div>';
-						}
+            html += '</div>';
 
-						// Provider information
-						html += '<em>Provider: ';
-				        html += this.provider_name ? '<a href="' + this.provider_url + '" class="provider" target="_blank">' + this.provider_name.toLowerCase() + '</a> ' : "" + '</em> </span> </div> ';
+            // Custom class name wrapped around embedded content, if specified
+            if (this.options.wrapElement) {
+              html = '<' + this.options.wrapElement+ ' class="' + this.options.className + '">' + html + '</' + this.options.wrapElement + '>';
+            }
 
-						html += '</div>';
+            this.code = html;
 
-						// Custom class name wrapped around embedded content, if specified
-			        if (this.options.wrapElement) {
-			        	html = '<' + this.options.wrapElement+ ' class="' + this.options.className + '">' + html + '</' + this.options.wrapElement + '>';
-			      	}
+            if (this.options.method === 'replace') {
+              this.$elem.replaceWith(this.code);
+            } else if (this.options.method === 'after'){
+              this.$elem.after(this.code);
+            } else if (this.options.method === 'afterParent'){
+              this.$elem.parent().after(this.code);
+            } else if (this.options.method === 'replaceParent'){
+              this.$elem.parent().replaceWith(this.code);
+            }
 
-				    this.code = html;
+            this.$elem.triggerHandler('displayed', [this]);
+          }
 
-				    if (this.options.method === 'replace') {
-				        this.$elem.replaceWith(this.code);
-				    } else if (this.options.method === 'after'){
-				        this.$elem.after(this.code);
-				    } else if (this.options.method === 'afterParent'){
-				        this.$elem.parent().after(this.code);
-				    } else if (this.options.method === 'replaceParent'){
-				        this.$elem.parent().replaceWith(this.code);
-				    }
+          $scope.$watch('msgBody', function() {
 
-				    this.$elem.triggerHandler('displayed', [this]);
-					}
+            var msgBody = $scope.msgBody;
+            var urlList = [];
 
-					$scope.$watch('msgBody', function() {
+            // Split message body by spaces, commas, and newlines
+            var arr = msgBody.split(/[ ,\n]+/);
 
-						var msgBody = $scope.msgBody;
-						var urlList = [];
+            // Check each "word" in message body for URL match
+            for (var i = 0; i < arr.length; i++) {
+              var current = arr[i];
+              var n = current.search(/^(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/);
+              if (n !== -1) {
+                if (urlList.indexOf(current) === -1) {
+                  urlList.push(current);
+                }
+              }
+            }
 
-						// Split message body by spaces, commas, and newlines
-						var arr = msgBody.split(/[ ,\n]+/);
+            // Update url list on scope, if it has changed
+            if (JSON.stringify($scope.urls) !== JSON.stringify(urlList)) {
+              $scope.urls = urlList;
+            }
+          });
+        }
+      }
+    });
+    </script>
+  </head>
 
-						// Check each "word" in message body for URL match
-						for (var i = 0; i < arr.length; i++) {
-							var current = arr[i];
-							var n = current.search(/^(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/);
-							if (n !== -1) {
-								if (urlList.indexOf(current) === -1) {
-									urlList.push(current);
-								}
-							}
-						}
+  <body ng-app="ngEmbedlyTestApp">
 
-						// Update url list on scope, if it has changed
-						if (JSON.stringify($scope.urls) !== JSON.stringify(urlList)) {
-							$scope.urls = urlList;
-						}
-					});
+    <h1>Embedly Angular Post Demo</h1>
+    <p class="enterText">Enter text and URLs below:</p>
+    <div class="embedlyContent" my-embedly-test>
+      <div class="container">
+        <textarea class="textarea" id="body" type="text" rows="15" ng-model="msgBody"></textarea>
+      </div>
+      <!-- For embeddable links typed into the textarea (dynamically added to document) -->
+      <div ng-embed-urls class="thumbnailEmbeds" urls="urls" key="key" display="display"></div>
+      <!-- For normal embeddable links outside the textarea -->
+      <div ng-embedly class="regularEmbeds" key="key" query="query">
+        <a href="http://stuffpoint.com/puppies/image/42977-puppies-cute-puppies-wallpaper.jpg">google images</a>
+      </div>
+    </div>
 
-				}
-			}
-		});
-		</script>
-	</head>
-
-	<body ng-app="ngEmbedlyTestApp">
-
-		<h1>Embedly Angular Post Demo</h1>
-		<p class="enterText">Enter text and URLs below:</p>
-		<div class="embedlyContent" my-embedly-test>
-			<div class="container">
-				<textarea class="textarea" id="body" type="text" rows="15" ng-model="msgBody"></textarea>
-			</div>
-			<!-- For embeddable links typed into the textarea (dynamically added to document) -->
-			<div ng-embed-urls class="thumbnailEmbeds" urls="urls" key="key" display="display"></div>
-			<!-- For normal embeddable links outside the textarea -->
-			<div ng-embedly class="regularEmbeds" key="key" query="query">
-				<a href="http://stuffpoint.com/puppies/image/42977-puppies-cute-puppies-wallpaper.jpg">google images</a>
-			</div>
-		</div>
-
-		<section class="footer">
-			<div class="author">
-		    <p>Author: Sarah Green</p>
-		    <p>Engineering Intern, Summer 2014</p>
-		    <p>Lithium Technologies</p>
-			</div>
-			<div class="github">
-		    <p>Source code and documentation:
-		    	<br>
-		    	<a href="https://github.com/lithiumtech/angular-embedly" target="_blank">https://github.com/lithiumtech/angular-embedly/</a>
-				</p>
-			</div>
-		</section>
-
-	</body>
+    <section class="footer">
+      <div class="author">
+        <p>Author: Sarah Green</p>
+        <p>Engineering Intern, Summer 2014</p>
+        <p>Lithium Technologies</p>
+      </div>
+      <div class="github">
+        <p>Source code and documentation:
+          <br>
+          <a href="https://github.com/lithiumtech/angular-embedly" target="_blank">https://github.com/lithiumtech/angular-embedly/</a>
+        </p>
+      </div>
+    </section>
+  </body>
 
 </html>

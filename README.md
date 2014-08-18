@@ -9,9 +9,30 @@ Angular Embed.ly is a JavaScript library for AngularJS apps to interact with the
 Embed.ly API. This library and documentation is adapted from the Embed.ly jQuery
 library, available at https://github.com/embedly/embedly-jquery.
 
-The library file can be found in the 'src' directory. Library demos can be found in 
-the 'demo' directory. Unit tests can be found in the 'test' directory. AngularJS 1.2.17 
-can be found in the 'libs' directory.
+The library file can be found in the 'angular.embedly.js' file in the root directory. 
+The minified file 'angular.embedly.min.js' may also be used. Library demos can be found 
+in the 'demo' directory. Unit tests can be found in the 'test' directory.
+
+To run a local server to view the library demos:
+```
+# Git clone this repository
+git clone git@github.com:lithiumtech/angular-embedly.git
+
+# From the command line, run:
+npm install
+bower install
+
+# Edit the demo files to replace any instances of 'Your Embed.ly Key Here' 
+# with your actual Embed.ly API key.
+
+# Run:
+gulp server
+```
+
+You can now navigate to:
+ * localhost:8080/demo/readme_demo.html
+ * localhost:8080/demo/post_demo.html
+ * localhost:8080/demo/example_page.html
 
 Also included: TravisCI for continuous integration, Bower for package management, 
 npm for managing Node.js modules, Gulp for task automation, JS Hint to detect JavaScript errors, 
@@ -25,8 +46,8 @@ Angular Embed.ly requires Angular 1.2.17 or above.
 Add Angular and Angular Embed.ly to your document.
 ```
 <head>
-  <script src="../libs/angular.js"></script>
-  <script src="../src/angular.embedly.js"></script>
+  <script src="../bower_components/angular/angular.js"></script>
+  <script src="../angular.embedly.js"></script>
 </head>
 ```
 
@@ -309,7 +330,7 @@ Embed.ly's [generator](http://embed.ly/tools/generator) to generate a
 regular expression for a specific set of sources.<br/>
 HTML:
 ```
-<div ng-embedly key="'Your Embed.ly Key'" url-re="urlRe">
+<div ng-embedly key="'Your Embed.ly Key'" url-reg-exp="urlRegExp">
 ```
 Script:
 ```
@@ -317,7 +338,7 @@ Script:
   return {
     controller: function ($scope, $rootScope) {
       $scope.key = 'Your Embed.ly API key';
-      $scope.urlRe = /http:\/\/(www\.flickr\.com\/photos\/.*|flic\.kr\/.*)/i;
+      $scope.urlRegExp = /http:\/\/(www\.flickr\.com\/photos\/.*|flic\.kr\/.*)/i;
     }
   }
 });

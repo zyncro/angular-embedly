@@ -6,6 +6,11 @@ var testFiles = [
   './test/*spec.js'
 ];
 
+var watchFiles = [
+  './test/*spec.js',
+  './src/*.js'
+];
+
 gulp.task('runTests', function() {
   return gulp.src(testFiles)
     .pipe(karma({
@@ -24,13 +29,12 @@ gulp.task('lint', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.src(testFiles)
-    .pipe(karma({
-      configFile: 'karma.conf.js',
-      action: 'watch'
-    }));
+  gulp.start('test');
+  gulp.watch(watchFiles, function() {
+    gulp.start('test');
+  });
 });
 
 gulp.task('test', ['lint', 'runTests']);
 
-gulp.task('default', ['lint', 'watch']);
+gulp.task('default', ['watch']);

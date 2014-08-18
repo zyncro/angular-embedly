@@ -4,18 +4,20 @@ var jshint = require('gulp-jshint');
 var connect = require('connect');
 var serveStatic = require('serve-static');
 var bump = require('gulp-bump');
+var jsmin = require('gulp-jsmin');
+var rename = require('gulp-rename');
 
 var testFiles = [
-  './test/*spec.js'
+  'test/*spec.js'
 ];
 
 var watchFiles = [
-  './test/*spec.js',
-  './src/*.js'
+  'test/*spec.js',
+  'angular.embedly.js'
 ];
 
-gulp.task('runTests', function() {
-  return gulp.src(testFiles)
+gulp.task('run-tests', function() {
+  return gulp.src('./nonexistent')
     .pipe(karma({
       configFile: 'karma.conf.js',
       action: 'run'
@@ -26,7 +28,7 @@ gulp.task('runTests', function() {
 });
 
 gulp.task('lint', function() {
-  gulp.src('./src/*.js')
+  gulp.src(watchFiles)
     .pipe(jshint())
       .pipe(jshint.reporter('default'));
 });
@@ -38,7 +40,7 @@ gulp.task('watch', function() {
   });
 });
 
-gulp.task('test', ['lint', 'runTests']);
+gulp.task('test', ['lint', 'run-tests']);
 
 gulp.task('default', ['watch']);
 
@@ -54,4 +56,11 @@ gulp.task('bump', function(){
   gulp.src('./*.json')
   .pipe(bump({ type:'minor' }))
   .pipe(gulp.dest('./'));
+});
+
+gulp.task('minify', function () {
+    gulp.src('angular.embedly.js')
+        .pipe(jsmin())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('.'));
 });

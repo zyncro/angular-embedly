@@ -14,11 +14,11 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test/libs/jquery.js',
-      'libs/angular.js',
-      'test/libs/angular-mocks.js',
-      'src/angular.embedly.js',
-      'test/**/*specs.js'
+      'bower_components/jquery/dist/jquery.js',
+      'bower_components/angular/angular.js',
+      'bower_components/angular-mocks/angular-mocks.js',
+      'angular.embedly.js',
+      'test/*spec.js'
     ],
 
 
@@ -31,7 +31,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'src/**/!(module|*.demo|*.spec|*.mock|polyfill).js': 'coverage'
+      'angular.embedly.js': 'coverage'
     },
 
 

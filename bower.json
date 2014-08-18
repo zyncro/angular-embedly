@@ -2,7 +2,7 @@
   "author": "Sarah Green",
   "name": "angular-embedly",
   "description": "AngularJS Embed.ly Library",
-  "version": "1.0",
+  "version": "1.1.0",
   "homepage": "https://github.com/lithiumtech/angular-embedly",
   "repository": {
     "type": "git",

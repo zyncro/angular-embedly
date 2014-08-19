@@ -115,8 +115,8 @@ as `$scope.query = {...};`. Continue reading for specific custom options.
 Custom Options
 --------------
 Customized options are available by adding and modifying scope variables, with corresponding
-references in the html. Multiple options may be specified at once. Camel case in the script 
-should be replaced with dashes in html. Ex: `$scope.addImageStyles` should be referenced in the 
+references in the HTML. Multiple options may be specified at once. Camel case in the script 
+should be replaced with dashes in HTML. Ex: `$scope.addImageStyles` should be referenced in the 
 document as `add-image-styles`.
 
 **Key**<br/>
@@ -151,6 +151,7 @@ Objectify endpoints are only available for [Legacy plans](http://embed.ly/docs/e
     customizing your embeds.
   * [objectify](http://embed.ly/docs/endpoints/2/objectify>) - returns all of
     the meta and API data Embed.ly has for a link. Advanced users.
+
 HTML:
 ```
 <div ng-embedly key="key" endpoint="endpoint">

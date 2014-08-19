@@ -6,12 +6,13 @@ Lithium Technologies<br/>
 San Francisco, CA
 
 Angular Embed.ly is a JavaScript library for AngularJS apps to interact with the 
-Embed.ly API. This library and documentation is adapted from the Embed.ly jQuery
-library, available at https://github.com/embedly/embedly-jquery.
+Embed.ly API. To find out what Embed.ly is all about, please visit http://embed.ly. 
+This library and documentation is adapted from the Embed.ly jQuery library, 
+available at https://github.com/embedly/embedly-jquery.
 
-The library file can be found in the 'angular.embedly.js' file in the root directory. 
-The minified file 'angular.embedly.min.js' may also be used. Library demos can be found 
-in the 'demo' directory. Unit tests can be found in the 'test' directory.
+The Angular Embed.ly library file can be found in the root directory. The minified file 
+'angular.embedly.min.js' may also be used. Library demos can be found in the 'demo' directory. 
+Unit tests can be found in the 'test' directory.
 
 To run a local server to view the library demos:
 ```
@@ -42,24 +43,24 @@ Jasmine/Karma/PhantomJS for unit testing, and Karma-Coverage for test coverage s
 
 Basic Setup
 -----------
-Angular Embed.ly requires Angular 1.2.17 or above. 
+Angular Embed.ly requires AngularJS 1.2.17 or above. 
 Add Angular and Angular Embed.ly to your document.
 ```
 <head>
-  <script src="../bower_components/angular/angular.js"></script>
-  <script src="../angular.embedly.js"></script>
+  <script src="./bower_components/angular/angular.js"></script>
+  <script src="./angular.embedly.js"></script>
 </head>
 ```
 
-Choose a name for your Angular Embed.ly App, e.x. 'ngEmbedlyTestApp'. 
-Include the ng-app directive with your chosen name in the 'body' tag.
+Choose a name for your Angular Embed.ly App, e.g. 'ngEmbedlyTestApp'. 
+Include the ng-app directive in the 'body' tag (or a 'div' tag).
 ```
 <body ng-app="ngEmbedlyTestApp">
 ```
 
-You must include a short script in the 'head' tag. Create an angular module 
-with the same name from ng-app. This module depends on the 'ngEmbedApp' 
-module from the Angular Embed.ly library.
+You must include a short script where you declare an angular module whose name 
+corresponds to your ng-app directive. This module depends on the 'ngEmbedApp' module 
+from the Angular Embed.ly library.
 ```
 <head>
 ...
@@ -70,9 +71,8 @@ module from the Angular Embed.ly library.
 </head>
 ```
 
-Now create a directive in your script that returns a controller, where custom 
-options and functions may be specified as variables on the `$scope`. You *must* 
-also include your Embed.ly API key here. It may be named myEmbedlyTest or otherwise. 
+Create a directive that returns a controller, where custom options and functions may be 
+specified as variables on the `$scope`. You *must* also include your Embed.ly API key here. 
 ```
 mod.directive('myEmbedlyTest', function() {
   return {
@@ -83,16 +83,14 @@ mod.directive('myEmbedlyTest', function() {
 });
 ```
 
-In your document, add this directive to the div within which all your embedded 
-content should go. Any camel case in the script should be replaced with dashes in html. 
+In the document, add your directive to the div within which all your embedded content should go. 
 ```
 <div my-embedly-test>
 ```
 
-Inside this div, you should add another div with the ng-embedly directive. You must 
-reference your API key as a directive attribute here, as well as other custom options. 
-This div is separated from the above directive div so that different embed options may 
-be specified for different areas of the document.
+Inside this div, you should add the ng-embedly directive. You must reference your API key as a directive 
+attribute here. Using the ng-embedly directive more than once allows for different embed options in 
+distinct areas of the document.
 ```
 <div my-embedly-test>
   ...
@@ -109,20 +107,17 @@ be specified for different areas of the document.
 </div>
 ```
 
-Now, all links with an 'a' tag inside the ng-embedly div will be replaced with
-embedded content. <br />
-Note: for the custom query options to work properly, they must be declared inside the 
-directive's returned controller as `$scope.query = {...};`. Continue reading for specific 
-custom options.
+Now all links contained in ng-embedly will be replaced with embedded content. <br/>
+Note: for the custom query options to work properly, they must be declared inside the controller 
+as `$scope.query = {...};`. Continue reading for specific custom options.
 
 
 Custom Options
 --------------
-Customized options are available by adding and modifying scope variables in the directive's 
-returned controller, with corresponding references in the html. Multiple options may 
-be specified at once. 
-Remember that camel case in the script should be replaced with dashes in html. Ex: 
-`$scope.addImageStyles` should be referenced in the document as `add-image-styles`.
+Customized options are available by adding and modifying scope variables, with corresponding
+references in the html. Multiple options may be specified at once. Camel case in the script 
+should be replaced with dashes in html. Ex: `$scope.addImageStyles` should be referenced in the 
+document as `add-image-styles`.
 
 **Key**<br/>
 Embed.ly requires that you pass an API key with every request.
@@ -156,7 +151,6 @@ Objectify endpoints are only available for [Legacy plans](http://embed.ly/docs/e
     customizing your embeds.
   * [objectify](http://embed.ly/docs/endpoints/2/objectify>) - returns all of
     the meta and API data Embed.ly has for a link. Advanced users.
-
 HTML:
 ```
 <div ng-embedly key="key" endpoint="endpoint">
@@ -181,7 +175,7 @@ override this by explicitly setting the secure parameter to ``true`` for
 ``https`` or ``false`` for HTTP.<br/>
 HTML:
 ```
-<div ng-embedly key="'Your Embed.ly Key'" secure="secure">
+<div ng-embedly key="key" secure="secure">
 ```
 Script:
 ```
@@ -200,17 +194,17 @@ A direct pass though to all the Query Arguments that the Embed.ly API accepts.
 These will be combined with the ``key``, ``endpoint``, and the URLs to
 form the request to Embed.ly.
 ```
-    query: {
-      maxwidth: 400,
-      maxheight: 400,
-      chars: 200,
-      autoplay: true
-      ...
-    }
+  query: {
+    maxwidth: 400,
+    maxheight: 400,
+    chars: 200,
+    autoplay: true
+    ...
+  }
 ```
 HTML:
 ```
-<div ng-embedly key="'Your Embed.ly Key'" query="query">
+<div ng-embedly key="key" query="query">
 ```
 Script:
 ```
@@ -231,10 +225,9 @@ using the default display function.
   * `after` - inserts the content after the link
   * `afterParent` - inserts the content after the parent element
   * `replaceParent` - replaces parent element with the embed content
-
 HTML:
 ```
-<div ng-embedly key="'Your Embed.ly Key'" method="method">
+<div ng-embedly key="key" method="method">
 ```
 Script:
 ```
@@ -253,7 +246,7 @@ A boolean value representing whether or not Embed.ly should use the style
 element to resize images based on the maxWidth and maxHeight parameters.<br/>
 HTML:
 ```
-<div ng-embedly key="'Your Embed.ly Key'" add-image-styles="addImageStyles">
+<div ng-embedly key="key" add-image-styles="addImageStyles">
 ```
 Script:
 ```
@@ -271,7 +264,7 @@ Script:
 A string value representing the valid HTML element to wrap the content in.<br/>
 HTML:
 ```
-<div ng-embedly key="'Your Embed.ly Key'" wrap-element="wrapElement">
+<div ng-embedly key="key" wrap-element="wrapElement">
 ```
 Script:
 ```
@@ -290,7 +283,7 @@ A string value representing a CSS class you would like to assign to the
 wrapElement.<br/>
 HTML:
 ```
-<div ng-embedly key="'Your Embed.ly Key'" class-name="className">
+<div ng-embedly key="key" class-name="className">
 ```
 Script:
 ```
@@ -310,7 +303,7 @@ batches these up into groups of 20. If you would like to set a custom size,
 you can do so with this argument.<br/>
 HTML:
 ```
-<div ng-embedly key="'Your Embed.ly Key'" batch="batch">
+<div ng-embedly key="key" batch="batch">
 ```
 Script:
 ```
@@ -330,7 +323,7 @@ Embed.ly's [generator](http://embed.ly/tools/generator) to generate a
 regular expression for a specific set of sources.<br/>
 HTML:
 ```
-<div ng-embedly key="'Your Embed.ly Key'" url-reg-exp="urlRegExp">
+<div ng-embedly key="key" url-reg-exp="urlRegExp">
 ```
 Script:
 ```
@@ -348,10 +341,10 @@ Script:
 Some developers may wish to write a custom `display` method to further 
 customize the appearance of embeds in their document, using information from 
 Embed.ly's API. For example, media snippets can be created using thumbnail 
-information from the Embed.ly API responses and custom CSS.<br />
+information from the Embed.ly API responses and custom CSS.<br/>
 HTML:
 ```
-<div ng-embedly key="'Your Embed.ly Key'" display="display">
+<div ng-embedly key="key" display="display">
 ```
 Script:
 ```
@@ -371,10 +364,10 @@ Script:
 In some cases, the ngEmbedUrls directive should be used instead of the ngEmbedly 
 directive. It should be used for custom manipulation of the embed URLs, e.g. 
 detecting URLs in a text input box. In this case, `$scope.urls` becomes available. 
-This variable is an array where URLs not native to the document can be pushed.
+This variable is an array where URLs not native to the document can be pushed.<br/>
 HTML:
 ```
-<div ng-embed-urls key="'Your Embed.ly Key'" urls="urls">
+<div ng-embed-urls key="key" urls="urls">
 ```
 Script:
 ```

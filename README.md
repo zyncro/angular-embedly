@@ -5,41 +5,28 @@ Software Engineering Intern, Summer 2014<br/>
 Lithium Technologies<br/>
 San Francisco, CA
 
+[![Build Status](https://magnum.travis-ci.com/lithiumtech/angular-embedly.svg?token=ge874yewpnzVTyXyDf8v&branch=master)](https://magnum.travis-ci.com/lithiumtech/angular-embedly)
+
 Angular Embed.ly is a JavaScript library for AngularJS apps to interact with the 
 Embed.ly API. To find out what Embed.ly is all about, please visit http://embed.ly. 
 This library and documentation is adapted from the Embed.ly jQuery library, 
 available at https://github.com/embedly/embedly-jquery.
 
-The Angular Embed.ly library file can be found in the root directory. The minified file 
-'angular.embedly.min.js' may also be used. Library demos can be found in the 'demo' directory. 
-Unit tests can be found in the 'test' directory.
+The Angular Embed.ly library file `angular.embedly.js` can be found in the root directory. The minified file 
+`angular.embedly.min.js` may also be used. Library demos can be found in the `demo` directory. 
+Unit tests can be found in the `test` directory.
 
-To run a local server to view the library demos:
-```
-# Git clone this repository
-git clone git@github.com:lithiumtech/angular-embedly.git
+Run a local demo server:
+-----------
 
-# From the command line, run:
-npm install
-bower install
-
-# Edit the demo files to replace any instances of 'Your Embed.ly Key Here' 
-# with your actual Embed.ly API key.
-
-# Run:
-gulp server
-```
-
-You can now navigate to:
- * localhost:8080/demo/readme_demo.html
- * localhost:8080/demo/post_demo.html
- * localhost:8080/demo/example_page.html
-
-Also included: TravisCI for continuous integration, Bower for package management, 
-npm for managing Node.js modules, Gulp for task automation, JS Hint to detect JavaScript errors, 
-Jasmine/Karma/PhantomJS for unit testing, and Karma-Coverage for test coverage statistics.
-
-[![Build Status](https://magnum.travis-ci.com/lithiumtech/angular-embedly.svg?token=ge874yewpnzVTyXyDf8v&branch=master)](https://magnum.travis-ci.com/lithiumtech/angular-embedly)
+1.  Git clone this repository `git clone git@github.com:lithiumtech/angular-embedly.git`
+2.  From the command line, run:`npm install` and `bower install`
+3.  Edit the demo files to replace any instances of 'Your Embed.ly Key Here' with your actual Embed.ly API key.
+4.  Run: `gulp server`
+5.  You can now navigate to:
+  * localhost:8080/demo/readme_demo.html
+  * localhost:8080/demo/post_demo.html
+  * localhost:8080/demo/example_page.html
 
 Basic Setup
 -----------

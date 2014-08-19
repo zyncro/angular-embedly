@@ -1,11 +1,7 @@
+[![Build Status](https://magnum.travis-ci.com/lithiumtech/angular-embedly.svg?token=ge874yewpnzVTyXyDf8v&branch=master)](https://magnum.travis-ci.com/lithiumtech/angular-embedly)
+
 Angular Embed.ly
 ================
-**Author: Sarah Green**<br/>
-Software Engineering Intern, Summer 2014<br/>
-Lithium Technologies<br/>
-San Francisco, CA
-
-[![Build Status](https://magnum.travis-ci.com/lithiumtech/angular-embedly.svg?token=ge874yewpnzVTyXyDf8v&branch=master)](https://magnum.travis-ci.com/lithiumtech/angular-embedly)
 
 Angular Embed.ly is a JavaScript library for AngularJS apps to interact with the 
 Embed.ly API. To find out what Embed.ly is all about, please visit http://embed.ly. 
@@ -59,7 +55,7 @@ from the Angular Embed.ly library.
 ```
 
 Create a directive that returns a controller, where custom options and functions may be 
-specified as variables on the `$scope`. You *must* also include your Embed.ly API key here. 
+specified as variables on the `$scope`. **You *must* also include your Embed.ly API key here.** 
 ```
 mod.directive('myEmbedlyTest', function() {
   return {

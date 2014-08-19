@@ -12,8 +12,8 @@ The Angular Embed.ly library file `angular.embedly.js` can be found in the root 
 `angular.embedly.min.js` may also be used. Library demos can be found in the `demo` directory. 
 Unit tests can be found in the `test` directory.
 
-Run a local demo server:
------------
+Run a local demo server
+-----------------------
 
 1.  Git clone this repository `git clone git@github.com:lithiumtech/angular-embedly.git`
 2.  From the command line, run:`npm install` and `bower install`

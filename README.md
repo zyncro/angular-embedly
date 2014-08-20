@@ -1,5 +1,7 @@
 [![Build Status](https://magnum.travis-ci.com/lithiumtech/angular-embedly.svg?token=ge874yewpnzVTyXyDf8v&branch=master)](https://magnum.travis-ci.com/lithiumtech/angular-embedly)
 
+[![Coverage Status](https://coveralls.io/repos/lithiumtech/angular-embedly/badge.png)](https://coveralls.io/r/lithiumtech/angular-embedly)
+
 Angular Embed.ly
 ================
 

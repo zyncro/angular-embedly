@@ -6,3 +6,4 @@ coverage
 
 # Files
 *.log
+*.info

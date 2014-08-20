@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lithiumtech/angular-embedly.svg?branch=master)](https://travis-ci.org/lithiumtech/angular-embedly) [![Coverage Status](https://coveralls.io/repos/lithiumtech/angular-embedly/badge.png)](https://coveralls.io/r/lithiumtech/angular-embedly)
+[![Build Status](https://travis-ci.org/lithiumtech/angular-embedly.svg?branch=master)](https://travis-ci.org/lithiumtech/angular-embedly) 
 
 Angular Embed.ly
 ================

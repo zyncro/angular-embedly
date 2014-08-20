@@ -46,7 +46,7 @@ gulp.task('watch', function() {
       .pipe(coveralls());
 });
 
-gulp.task('test', ['lint', 'run-tests']);
+gulp.task('test', ['lint', 'run-tests', 'coveralls']);
 
 gulp.task('default', ['watch']);
 
@@ -66,7 +66,7 @@ gulp.task('bump', function(){
 
 gulp.task('minify', function () {
     gulp.src('angular.embedly.js')
-        .pipe(jsmin())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest('.'));
+      .pipe(jsmin())
+      .pipe(rename({suffix: '.min'}))
+      .pipe(gulp.dest('.'));
 });

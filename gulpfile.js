@@ -6,6 +6,7 @@ var serveStatic = require('serve-static');
 var bump = require('gulp-bump');
 var jsmin = require('gulp-jsmin');
 var rename = require('gulp-rename');
+var coveralls = require('gulp-coveralls');
 
 var testFiles = [
   'test/*spec.js'
@@ -38,6 +39,11 @@ gulp.task('watch', function() {
   gulp.watch(watchFiles, function() {
     gulp.start('test');
   });
+});
+
+ gulp.task('coveralls', function () {
+    gulp.src('coverage/**/lcov.info')
+      .pipe(coveralls());
 });
 
 gulp.task('test', ['lint', 'run-tests']);

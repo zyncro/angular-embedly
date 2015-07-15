@@ -4,10 +4,6 @@
   "description": "AngularJS Embed.ly Library",
   "version": "1.0.0",
   "homepage": "https://github.com/zyncro/angular-embedly",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/zyncro/angular-embedly.git"
-  },
   "ignore": [],
   "dependencies": {
     "angular": "1.2.17",
